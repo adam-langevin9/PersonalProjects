@@ -1,0 +1,6 @@
+# Most Common
+.DS_Store
+Thumbs.db
+
+# Python
+*.pyc
