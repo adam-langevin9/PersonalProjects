@@ -1,7 +1,11 @@
+import os
+
 GREEN = 'g'
 YELLOW = 'y'
 WRONG = ' '
-DEAFAULT_FILE = 'WordleWords.txt'
+DEFAULT_FILE = 'WordleWords.txt'
+CWD = os.getcwd()
+FILE_NOT_FOUND_MESSAGE = f'Ensure that your wordle words file is in the current working directory. Your current working directory is {CWD}'
 START_MESSAGE = 'Good Starter words are slice, tried, or crane'
 GUESS_PROMPT = 'Enter your guess: '
 GUESS_ERROR = 'Invalid guess: Your guess must be 5 letters'
@@ -11,13 +15,13 @@ HINTS_ERROR = 'Invalid hints: Your hints should be 5 letters'
 HINTS_KEY = f'({GREEN} = green, {YELLOW} = yellow, {WRONG} = wrong, {REENTER_GUESS} = re-enter guess)'
 WIN_MESSAGE = "Well Done!"
 LOOSE_MESSAGE = "Better Luck Next Time"
-FILE_ERROR = f"Unable to load words file: {DEAFAULT_FILE}"
+FILE_ERROR = f"Unable to load words file: {DEFAULT_FILE}"
 DIRECTIONS = f'Start by entering your first 5 letter guess. \nThen enter the corresponding hints you receive using the following key \n{HINTS_KEY}. \nThe system will show you a list of possible words given your guess and hints. \nRepeat this process to get closser to the mystery word. \nBe smart about your choices because you only have 6 tries.'
 
 
 class WordleHelper:
 
-    def __init__(self, words_file: str = DEAFAULT_FILE):
+    def __init__(self, words_file: str = DEFAULT_FILE):
         self.__words_file = words_file
         self.__words = None
         self.__ui = self.UserInput()
@@ -34,7 +38,8 @@ class WordleHelper:
         try:
             with open(file) as words:
                 return set(word.strip() for word in words)
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+
             return None
 
     def __is_win(self):
@@ -79,6 +84,7 @@ class WordleHelper:
                 self.__words = set(word.strip() for word in words)
                 return True
         except FileNotFoundError:
+            print(FILE_NOT_FOUND_MESSAGE)
             return False
 
     def start(self):
