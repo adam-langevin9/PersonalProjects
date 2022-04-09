@@ -1,6 +1,6 @@
 # InvestmentPortfolios
 
-Program to simulates the management of investment portfolios for clients. This was a class project where certain design criteria was required and may not be the best solution for this problem.
+Program simulates the management of investment portfolios for clients. This was a class project where certain design criteria was required and may not be the best solution for this problem.
 
 ## Structure
 Data for clients are stored as nodes in a linked list. Each node contains access to client name, client id, several stocks, current price for each stock[^1], purchase price for each stock[^1], percent change for each stock over some time period[^1]. 
