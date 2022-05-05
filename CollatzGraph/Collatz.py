@@ -30,4 +30,5 @@ def collatz_graphs(count: int):
     plt.show()
 
 
-collatz_graphs(5000)
+if __name__ == '__main__':
+    collatz_graphs(5000)
